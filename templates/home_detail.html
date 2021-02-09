@@ -1,0 +1,138 @@
+{% load static %}
+{% load hitcount_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFlair discussion forum</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
+    <style>
+        .box{
+            border: 4px solid black;
+            margin: 0 auto;
+        }
+    </style>
+
+
+</head>
+<body>
+        <h2 class="jumbotron">
+
+            Активных обсуждений: {{ hitcount.pk }}
+            <form method="POST" action="{% url 'addInForum' %}">
+                {% csrf_token %}
+            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Добавить вопрос</button>
+                 {% if  request.user.is_authenticated %}
+            {{ request.user }}
+                {% endif %}
+            </form>
+            {% if not request.user.is_authenticated %}
+            <button href="{% url 'signin'%}" class="btn" style="width:fit-content; padding: 4px; margin:10px; left: 100px; "><a href="{% url 'signin'%}">Войти</a></button>
+
+
+            <button href="{% url 'signup'%}" class="btn" style="width:fit-content; padding: 4px; margin:10px;"><a href="{% url 'signup'%}">Зарегистрироваться</a></button>
+        {% endif %}
+            {% if  request.user.is_authenticated %}
+                        <button href="{% url 'signout' %}" class="btn" style="width:fit-content; padding: 4px; margin:10px;"><a href="{% url 'signout'%}">Выйти</a></button>
+            {% endif %}
+                    {% if  request.user.is_authenticated %}
+                        <button href="{% url 'profile' %}" class="btn" style="width:fit-content; padding: 4px; margin:10px;"><a href="{% url 'profile'%}">Профиль</a></button>
+            {% endif %}
+
+        </h2>
+            <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
+
+
+
+
+                <div class="card box container">
+                    <br>
+                    <h5 class="card-title">
+
+                        <small><a href="{% url 'delete' posts.id   %}">удалить</a></small><br>
+                        <a>Дата создания: {{ posts.date_created }}</a>
+                        <a href='#'><h3>{{posts.topic}}</h3></a>
+                        <div class="card-body container">
+                                <p>{{posts.description}}</p>
+                            </h5>
+                            <hr>
+                            <p> By: {{posts.name}}</p>
+                            email- {{posts.email}}
+                            <hr>
+
+                {% if  request.user.is_authenticated %}
+                            <h4> Оставить отзыв</h4>
+
+                               <br>
+
+
+                          <form action="{% url 'add_review' posts.id %}" method="POST" id ='form'>
+                           {% csrf_token %}
+
+                           <input name="name" value="{{ request.user.get_full_name }}" style=" visibility: hidden; height: 1px;width: 1px;">
+                          <input name="email" value="{{ request.user.email }}" style=" visibility: hidden; height: 1px;width: 1px;" >
+                           <input name = "text" type="text">
+                            {% if request.user.profile.photo.url != "" %}
+                           <input name = "user_photo" type="text"  style=" visibility: hidden; height: 1px;width: 1px;" value="{{ request.user.profile.photo.url }}">
+                                {% endif %}
+
+
+                            <input type="submit" class="btn btn-success" value="submit" id="submit" >
+                           </form>
+
+                        {% endif %}
+                                            {% if not request.user.is_authenticated %}
+                            <p>Войдите что бы оставить отзыв</p>
+                                {% endif %}
+                            <h1> Отзывы </h1>
+
+                {% for review in posts.reviews_set.all %}
+                    <div>
+
+
+                    <h2>{{ review.name }}</h2>
+                    <img style="height: 100px; width: 100px" src="{{ review.user_photo }}">
+                        <p> {{ review.text }}</p>
+                        {% if review.name == request.user.get_full_name and review.email == request.user.email  %}
+                        <small><a href="{% url 'delete_com' review.id   %}">удалить</a></small><br>
+                            {% endif %}
+
+                    </div>
+
+                {% endfor %}
+                            </form>
+                        </div>
+                </div>
+            </div>
+            <br>
+<script>
+    const form = document.getElementById('form');
+    form.addEventListener("submit", submitHandler);
+
+    function submitHandler(e) {
+        e.preventDefault();
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : '{% url 'add_review' posts.id %}', // the url where we want to POST
+            data        : $('#form').serialize(), // our form data
+            dataType    : 'json', // what type of data do we expect back from the server
+            success     : successFunction()
+        });
+    }
+
+    function successFunction(msg) {
+         {
+            alert('Success!');
+            form.reset()
+        }
+    }
+</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>

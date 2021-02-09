@@ -1,0 +1,15 @@
+
+<h1>OSINT - сервисы</h1>
+{% for post in posts %}
+<div class="osint">
+<h3>{{ post.name }}</h3>
+<div class="osinttext">{{ post.description }}</div>
+<div class="category">{{ post.category }}</div>
+</div>
+{% endfor %}
+
+{% block menu %}
+{% for razdel in menu %}
+<a href="/c/{{ razdel.id }}" class="mainmenu">{{ razdel.name }}</a>
+{% endfor %}
+{% endblock %}

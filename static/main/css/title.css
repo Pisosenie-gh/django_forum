@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+.txt-rotate{
+ font-size: 35px;
+ font-family: fantasy;
+ color: white;
+}
+
+.hui{
+  font-size: 35px;
+  font-family: Nato Sans, sans-serif;
+  color: white;
+  margin-top: 100px;
+}
+
+.hui2{
+  font-size: 25px;
+  font-family: Nato Sans, sans-serif;
+  color: white;
+}

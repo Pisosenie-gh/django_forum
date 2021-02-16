@@ -1,0 +1,420 @@
+{% load static %}
+{% load hitcount_tags %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>8T</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'main/' %}img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'main/' %}css/bootstrapp.min.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/magnific-popup.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/themify-icons.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/nice-select.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/flaticon.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/animatee.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/slicknav.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/stylee.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+
+<style>
+    .modalbackground {
+margin: 0; /* убираем отступы */
+padding: 0; /* убираем отступы */
+position: fixed; /* фиксируем положение */
+top:0; /* растягиваем блок по всему экрану */
+bottom:0;
+left:0;
+right:0;
+background: rgba(0,0,0,0.5); /* полупрозрачный цвет фона */
+z-index:100; /* выводим фон поверх всех слоев на странице браузера */
+opacity:0; /* Делаем невидимым */
+pointer-events: none; /* элемент невидим для событий мыши */
+}
+
+/* при отображении модального окно - именно здесь начинается магия */
+.modalbackground:target {
+    opacity: 1; /* делаем окно видимым */
+    pointer-events: auto; /* элемент видим для событий мыши */
+}
+
+/* ширина диалогового окна и его отступы от экрана */
+.modalwindow {
+    width: 100%;
+    max-width: 300px;
+    margin: 10% auto;
+    padding: 2%;
+    background: #fff;
+    border-radius: 3px;
+}
+
+/* настройка заголовка */
+.modalwindow h3 {
+padding: 0;
+margin: 0;
+}
+
+/* оформление сообщение */
+.modalwindow p {
+padding: 0;
+margin: 4% 0 8% 0;
+}
+
+/* вид кнопки ЗАКРЫТЬ */
+.modalwindow a {
+display: block;
+color: #fff;
+background: #369;
+padding: 2%;
+margin: 0 auto;
+width: 50%;
+border-radius: 3px;
+text-align: center;
+text-decoration: none;
+}
+
+/* вид кнопки ЗАКРЫТЬ при наведении на нее мыши */
+.modalwindow a:hover {
+background: #47a;
+}
+</style>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center justify-content-between no-gutters">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="{% url 'index' %}">
+                                    <img src="{% static 'main/' %}img/.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-7">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{% url 'index' %}">Главная</a></li>
+
+                                        <!-- <li><a class="active" href="#">blog <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="blog.html">blog</a></li>
+                                                <li><a href="single-blog.html">single-blog</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="causes-details.html">causes-details</a></li>
+                                                <li><a href="elements.html">elements</a></li>
+                                            </ul>
+                                        </li> -->
+                                        <li><a href="{% url 'contact' %}">Наши контакты</a></li>
+                                        {% if not user.is_authenticated %}
+                                        <li><a href="{% url 'signup' %}" style="color: #5dd24f">Зарегистрироваться</a></li>
+                                        <li><a href="{% url 'signin' %}" style="color: #5dd24f">Авторизоваться</a></li>
+                                        {% else %}
+                                                                            <li><a href="{% url 'signout' %}" style="color: #5dd24f">Выйти</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    {% if   user.is_authenticated %}
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="donate_now">
+                                <a href="{% url 'edit' %}" class="boxed-btn">Профиль</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- breadcam_area_start -->
+    <div class="breadcam_area bradcam_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="breadcam_text">
+                        <h3>Ваши вопросы</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcam_area_end -->
+
+    <!--================Blog Area =================-->
+
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <div class="blog_left_sidebar">
+                        {% for i in q %}
+
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+
+                                <a href="#" class="blog_item_date">
+                                    <h3>{{ i.date_created }}</h3>
+
+                                </a>
+                            </div>
+
+                            <div class="blog_details">
+                                <a href="{% url 'delete' i.id %}"><button  class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit" style="width: 25%!important; float: right; font-size: 10px">Удалить</button></a>
+                                <div id="error" class="modalbackground">
+
+</div>
+                                <a class="d-inline-block" href="c/question/{{ i.id }}">
+
+                                    <h2>{{ i.description }}</h2>
+                                </a>
+                                <p>{{ i.opisanie }}</p>
+                                <ul class="blog-info-link" style="float: right;">
+                                    <li><a href="#"><i class="fa fa-user"></i> {{ i.name }}, {{ i.topic }}</a></li>
+                                    <li><a href="#"><i class="fa fa-comments"></i> {{ i.reviews_set.count }} Комментариев</a></li>
+                                    <li><a href="#"><i class="fa fa-eye"></i> {% get_hit_count for i  %} Просмотров</a></li>
+
+                                </ul>
+
+                            </div>
+                        </article>
+                        {% endfor %}
+
+
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget search_widget">
+                            <form action="{% url 'search' %}" method="get" >
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input  name="q" type="text" class="form-control" placeholder='Введите ключевые слова'
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Search Keyword'">
+                                        <div class="input-group-append">
+                                            <button class="btn" type="button"><i class="ti-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                    type="submit">Поиск</button>
+                            </form>
+                        </aside>
+
+                        <aside class="single_sidebar_widget post_category_widget">
+                            <h4 class="widget_title">Категории</h4>
+                            <ul class="list cat-list">
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Метапознание</p>
+                                        <p>(37)</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Киберпедагогика</p>
+                                        <p>(10)</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Технологии</p>
+                                        <p>(03)</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Математика</p>
+                                        <p>(11)</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Что то</p>
+                                        <p>(21)</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="d-flex">
+                                        <p>Еще что то</p>
+                                        <p>(09)</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </aside>
+
+                        <aside class="single_sidebar_widget popular_post_widget">
+                            <h3 class="widget_title">Популярные статьи</h3>
+                            <div class="media post_item">
+                                <img src="img/post/post_1.png" alt="post">
+                                <div class="media-body">
+                                    <a href="single-blog.html">
+                                        <h3>From life was you fish...</h3>
+                                    </a>
+                                    <p>January 12, 2019</p>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="img/post/post_2.png" alt="post">
+                                <div class="media-body">
+                                    <a href="single-blog.html">
+                                        <h3>The Amazing Hubble</h3>
+                                    </a>
+                                    <p>02 Hours ago</p>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="img/post/post_3.png" alt="post">
+                                <div class="media-body">
+                                    <a href="single-blog.html">
+                                        <h3>Astronomy Or Astrology</h3>
+                                    </a>
+                                    <p>03 Hours ago</p>
+                                </div>
+                            </div>
+                            <div class="media post_item">
+                                <img src="img/post/post_4.png" alt="post">
+                                <div class="media-body">
+                                    <a href="single-blog.html">
+                                        <h3>Asteroids telescope</h3>
+                                    </a>
+                                    <p>01 Hours ago</p>
+                                </div>
+                            </div>
+                        </aside>
+
+
+
+                        <!-- <aside class="single_sidebar_widget instagram_feeds">
+                            <h4 class="widget_title">Instagram Feeds</h4>
+                            <ul class="instagram_row flex-wrap">
+                                <li>
+                                    <a href="#">
+                                        <img class="img-fluid" src="img/post/post_5.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img class="img-fluid" src="img/post/post_6.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img class="img-fluid" src="img/post/post_7.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img class="img-fluid" src="img/post/post_8.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img class="img-fluid" src="img/post/post_9.png" alt="">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img class="img-fluid" src="img/post/post_10.png" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                        </aside>
+
+
+                        <aside class="single_sidebar_widget newsletter_widget">
+                            <h4 class="widget_title">Newsletter</h4>
+
+                            <form action="#">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                                        onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                                </div>
+                                <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                                    type="submit">Subscribe</button>
+                            </form>
+                        </aside> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================Blog Area =================-->
+
+    <!-- footer_start -->
+    <footer class="footer">
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer_end -->
+
+    <!-- JS here -->
+    <script src="{% static 'main/' %}js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="{% static 'main/' %}js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="{% static 'main/' %}js/popper.min.js"></script>
+    <script src="{% static 'main/' %}js/bootstrap.min.js"></script>
+    <script src="{% static 'main/' %}js/owl.carousel.min.js"></script>
+    <script src="{% static 'main/' %}js/isotope.pkgd.min.js"></script>
+    <script src="{% static 'main/' %}js/ajax-form.js"></script>
+    <script src="{% static 'main/' %}js/waypoints.min.js"></script>
+    <script src="{% static 'main/' %}js/jquery.counterup.min.js"></script>
+    <script src="{% static 'main/' %}js/imagesloaded.pkgd.min.js"></script>
+    <script src="{% static 'main/' %}js/scrollIt.js"></script>
+    <script src="{% static 'main/' %}js/jquery.scrollUp.min.js"></script>
+    <script src="{% static 'main/' %}js/wow.min.js"></script>
+    <script src="{% static 'main/' %}js/nice-select.min.js"></script>
+    <script src="{% static 'main/' %}js/jquery.slicknav.min.js"></script>
+    <script src="{% static 'main/' %}js/jquery.magnific-popup.min.js"></script>
+    <script src="{% static 'main/' %}js/plugins.js"></script>
+
+    <!--contact js-->
+    <script src="{% static 'main/' %}js/contact.js"></script>
+    <script src="{% static 'main/' %}js/jquery.ajaxchimp.min.js"></script>
+    <script src="{% static 'main/' %}js/jquery.form.js"></script>
+    <script src="{% static 'main/' %}js/jquery.validate.min.js"></script>
+    <script src="{% static 'main/' %}js/mail-script.js"></script>
+
+    <script src="{% static 'main/' %}js/main.js"></script>
+
+</body>

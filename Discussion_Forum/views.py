@@ -10,7 +10,7 @@ from django.db.models import Count
 from django.utils.decorators import method_decorator
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import forum, Like, Like_2
+from .models import forum, Like, Like_2, ForumPopular
 from .models import Reviews as Rev
 from .serializers import forumSerializer
 from django.utils.decorators import method_decorator
@@ -18,9 +18,14 @@ from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect
 from hitcount.views import HitCountDetailView
 
-"""Бесполезная"""
+"""Вывод полпулярных вопросов """
 
+class Popular(View):
 
+    def get_popular(self):
+        return ForumPopular.objects.all()
+
+    """Бесполезная"""
 def like_post(request):
     user = request.user
     post_id = request.POST.get('post_id')
@@ -139,22 +144,28 @@ class AddReview(View):
 """Вопросы"""
 
 
-class PostList(ListView):
+
+
+
+class GenreYear:
+    """Жанры и года выхода фильмов"""
+
+    def get_genres(self):
+        return Category.objects.all()
+
+
+class PostList(ListView, GenreYear, Popular):
     model = forum
     queryset = forum.objects.filter()
-
-
-
-
 
 
 """Вывод вопросов деатльно + кол во просмотров"""
 
 
 
-class PostDetail(HitCountDetailView):
+class PostDetail(HitCountDetailView, GenreYear, Popular):
     model = forum
-    slug_field = "slug"
+
     count_hit = True
 
 
@@ -176,7 +187,7 @@ def to_get_posts(request, id):
 
     selected_comment = get_object_or_404(forum, id=id)
     selected_comment.delete()
-    return redirect('home')
+    return redirect('Discussion_Forum:my_q')
 
 
 """АPI"""
@@ -224,16 +235,22 @@ class CategoryView(View):
 
         category = Category.objects.all()
 
+
         return render(request, 'addInForum.html' , {'category': category})
 
 
 
+class CategoryViewSet(View, GenreYear):
 
-def post_category(request, pk):
-    posts = forum.objects.filter(topic__id = pk)
-    menu = Category.objects.all()
+    def get(self,request, pk):
+        get_genres = Category.objects.all()
+        forum_list = ForumPopular.objects.all()
+        posts = forum.objects.filter(topic__id = pk)
+        menu = Category.objects.all()
 
-    return render(request, 'Discussion_Forum/home.html', {'posts':posts, 'menu':menu} )
+        return render(request, 'Discussion_Forum/home.html', {'posts':posts, 'menu':menu, 'get_genres': get_genres, 'forum_list':forum_list} )
+
+
 
 
 
@@ -241,4 +258,24 @@ def post_category(request, pk):
 
 def contact(request):
     return   render(request, 'contact.html')
+
+
+def q_author(request):
+    q = forum.objects.filter(username = request.user)
+
+    return render(request, 'my_q.html', {'q': q})
+
+
+class CallView(View):
+
+    def post(self, request):
+        form = CallForm(request.POST)
+
+        movie = Call.objects.all()
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.movie = movie
+            form.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 

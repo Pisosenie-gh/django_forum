@@ -18,15 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'y&@7_6xr$xkj+wfrwwx=dz$p4g^8-+p5t#@flyjlwer&+vx2i)'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -90,24 +82,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'django_forum.wsgi.application'
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'forum',
-        'USER': 'danil',
-        'PASSWORD': '22072003',
-        'HOST': '127.0.0.1',
-        'PORT': '',
-
-    }
-}
-
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -146,7 +120,7 @@ LANGUAGES = (
     ('kk', gettext('Kazakh'))
 )
 
-
+TIME_ZONE = 'Asia/Almaty'
 
 # Пример вывода: 16 сентября 2012
 DATE_FORMAT = 'd E Y'
@@ -154,11 +128,13 @@ DATE_FORMAT = 'd E Y'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-TIME_ZONE = 'Asia/Almaty'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
+
+try:
+    from .local_settings import *
+
+except ImportError:
+    from .prod_settings import *

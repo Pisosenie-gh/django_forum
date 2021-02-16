@@ -158,88 +158,37 @@
                             </form>
                         </aside>
 
-                        <aside class="single_sidebar_widget post_category_widget">
-
+                                                <aside class="single_sidebar_widget post_category_widget">
                             <h4 class="widget_title">Категории</h4>
                             <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex">
+ {% for genre in get_genres %}
+     <li>
+                                    <a href="{{ genre.id }}" class="d-flex">
+                                        <p>{{ genre.name }}</p>
 
-                                        <p>Метапознание</p>
-                                        <p>(37)</p>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Киберпедагогика</p>
-                                        <p>(10)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Технологии</p>
-                                        <p>(03)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Математика</p>
-                                        <p>(11)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Что то</p>
-                                        <p>(21)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Еще что то</p>
-                                        <p>(09)</p>
-                                    </a>
-                                </li>
+
+{% endfor %}
                             </ul>
                         </aside>
 
                         <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Популярные статьи</h3>
+                            <h3 class="widget_title">Популярные вопросы</h3>
+                            {% for i in forum_list %}
+
                             <div class="media post_item">
-                                <img src="img/post/post_1.png" alt="post">
+                                <img src="{{ i.vopros.user_photo }}" style="    width: 20%;" >
                                 <div class="media-body">
                                     <a href="single-blog.html">
-                                        <h3>From life was you fish...</h3>
+                                        <h3>{{ i.vopros.description }}</h3>
                                     </a>
-                                    <p>January 12, 2019</p>
+                                    <p>{{ i.vopros.date_created }}</p>
                                 </div>
                             </div>
-                            <div class="media post_item">
-                                <img src="img/post/post_2.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>The Amazing Hubble</h3>
-                                    </a>
-                                    <p>02 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="img/post/post_3.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>Astronomy Or Astrology</h3>
-                                    </a>
-                                    <p>03 Hours ago</p>
-                                </div>
-                            </div>
-                            <div class="media post_item">
-                                <img src="img/post/post_4.png" alt="post">
-                                <div class="media-body">
-                                    <a href="single-blog.html">
-                                        <h3>Asteroids telescope</h3>
-                                    </a>
-                                    <p>01 Hours ago</p>
-                                </div>
-                            </div>
+                                <hr>
+                            {% endfor %}
+
                         </aside>
 
 

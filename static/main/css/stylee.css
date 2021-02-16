@@ -2504,6 +2504,11 @@ h1,h2,h3,h4,h5,h6 {
   border-left: 2px solid #ff5e13;
 }
 
+.courses-info2{
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
 .progress-table-wrap {
   overflow-x: scroll;
 }
@@ -4402,7 +4407,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .comment-form {
-  border-top: 1px solid #eee;
   padding-top: 45px;
   margin-top: 50px;
   margin-bottom: 20px;

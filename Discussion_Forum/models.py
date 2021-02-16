@@ -27,11 +27,13 @@ class Category(models.Model):
 
 class forum(models.Model):
     """Вопросы"""
+    username = models.CharField("Для валидации", blank=True,max_length=5000)
+
     name = models.CharField(max_length=200, default="{{ request.user }}")
     email = models.CharField(max_length=200, null=True)
     topic = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     description = models.CharField(max_length=1000, blank=True)
-    slug = models.CharField(max_length=10000, null=True)
+
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     opisanie = models.TextField("Описание", null=True, blank=True)
     likes = models.ManyToManyField(User, related_name='blog_posts')
@@ -41,7 +43,7 @@ class forum(models.Model):
 
     @property
     def num_likes(self):
-        return self.likes.all().count()
+        return str(self.likes.all().count())
 
     def __str__(self):
         return str(self.topic)
@@ -59,7 +61,7 @@ class Like(models.Model):
     value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
 
     def __str__(self):
-        return self.post
+        return str(self.post)
 
 
 class PodCategory(models.Model):
@@ -114,4 +116,30 @@ class Like_2(models.Model):
 
     def __str__(self):
 
-        return self.post
+        return str(self.user)
+
+
+class Call(models.Model):
+    text = models.TextField('Text', blank=True)
+    name = models.CharField("name", max_length=2000, blank=True)
+    email = models.EmailField('Email', blank=True)
+
+
+    def __str__(self):
+        return str(self.name)
+
+
+    class Meta:
+        verbose_name = "Связь"
+        verbose_name_plural = "Свзяь"
+
+
+class ForumPopular(models.Model):
+    vopros = models.OneToOneField(forum, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.vopros)
+
+    class Meta:
+        verbose_name = "Популярная статья"
+        verbose_name_plural = "Популярные статьи"

@@ -49,10 +49,10 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">Главная</a></li>
-                                        <li><a href="about.html">Наша миссия</a></li>
-                                        <li><a href="causes.html">Курсы</a></li>
-                                        <li><a href="impact.html">Франшиза</a></li>
+                                        <li><a href="{% url 'index' %}">Главная</a></li>
+                                        <li><a href="{% url 'mission' %}">Наша миссия</a></li>
+                                        <li><a href="{% url 'Courses:courses' %}">Курсы</a></li>
+                                        <li><a href="{% url 'franchise' %}">Франшиза</a></li>
 
                                         <!-- <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
@@ -66,14 +66,14 @@
                                                 <li><a href="elements.html">elements</a></li>
                                             </ul>
                                         </li> -->
-                                        <li><a class="active" href="contact.html">Наши контакты</a></li>
+                                        <li><a class="active" href="{% url 'contact' %}">Наши контакты</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="donate_now">
-                                <a href="blog-test.html" class="boxed-btn">Перейти на наш форум</a>
+                                <a href="{% url 'Discussion_Forum:posts' %}" class="boxed-btn">Перейти на наш форум</a>
                             </div>
                         </div>
                         <div class="col-12">
@@ -117,7 +117,7 @@
 
                                   <input name="name" type="text" value="{{ request.user.get_full_name }}" style=" visibility: hidden; height: 1px;width: 1px;">
      <input name="email" type="email" value="{{ request.user.email }}" style=" visibility: hidden; height: 1px;width: 1px;">
-   <input name="slug" type="text" id="myInput" style=" visibility: hidden; height: 1px;width: 1px;">
+                                <input type="hidden" name = 'username' value="{{ request.user }}" >
                                 <div class="col-12">
                                     <div class="form-group">
                                         <input class="form-control" name="description" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ваш вопрос:'" placeholder="Ваш вопрос:">

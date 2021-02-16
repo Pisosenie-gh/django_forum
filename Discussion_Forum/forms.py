@@ -9,7 +9,7 @@ class CreateInForum(ModelForm):
 
     class Meta:
         model = forum
-        fields = ('name','email', 'topic', 'description', 'slug', 'opisanie','user_photo')
+        fields = ('name','email', 'topic', 'description',  'opisanie','user_photo', 'username')
 
 
 class ReviewForm(forms.ModelForm):
@@ -18,6 +18,11 @@ class ReviewForm(forms.ModelForm):
         model = Reviews
         fields = ("name",  "text", "user_photo",'email')
 
+class CallForm(forms.ModelForm):
+
+    class Meta:
+        model = Call
+        fields  = '__all__'
 
 """Форма Входа"""
 

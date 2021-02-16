@@ -405,6 +405,11 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(21,154,74,1) 0%, rgba
   transition: all 0.4s;
 }
 
+.courses-info2{
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
 .login100-form-btn {
   display: -webkit-box;
   display: -webkit-flex;

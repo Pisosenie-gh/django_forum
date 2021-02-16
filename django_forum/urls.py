@@ -26,13 +26,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 from  Discussion_Forum.views import  AddPost
 from  courses.views import AddZayavka, CoursesView, mission, franchise
-from Discussion_Forum.views import PostDetail, PostList
+from Discussion_Forum.views import PostDetail, PostList, CallView
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('', home, name='home'),
     path('add/addInForum/', AddPost.as_view(), name='addInForum'),
+    path('call/', views.CallView.as_view(), name='call'),
+
     #path('addInDiscussion/', addInDiscussion, name='addInDiscussion'),
     path("review/<int:pk>/", views.AddReview.as_view(), name = "add_review"),
     path('auth/', include('authapp.urls')),

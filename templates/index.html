@@ -1,4 +1,4 @@
-{% load static %}
+{%load static %}
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -10,20 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'main/' %}img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="{% static 'main/css/bootstrapp.min.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/owl.carousel.min.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/themify-icons.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/nice-select.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/flaticon.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/animatee.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/slicknav.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/stylee.css' %}">
+    <link rel="stylesheet" href="{% static 'main/' %}css/bootstrapp.min.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/magnific-popup.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/themify-icons.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/nice-select.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/flaticon.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/animatee.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/slicknav.css">
+    <link rel="stylesheet" href="{% static 'main/' %}css/stylee.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -41,7 +41,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="index.html">
-                                    <img src="{% static 'main/img/.png' %}" alt="">
+                                    <img src="{% static 'main/' %}img/.png" alt="">
                                 </a>
                             </div>
                         </div>
@@ -49,18 +49,23 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="#">Главная</a></li>
-                                        <li><a href="{% url 'mission' %}">Наша миссия</a></li>
-                                        <li><a href="{% url 'Courses:courses' %}">Курсы</a></li>
-                                        <li><a href="{% url 'franchise' %}">Франшиза</a></li>
+                                        <li><a class="active" href="{% url 'index'%}">Главная</a></li>
+                                        <li><a href="{% url 'mission'%}">Наша миссия</a></li>
 
-                                        <!-- <li><a href="#">blog <i class="ti-angle-down"></i></a>
+                                        <li><a href="#">Наши направления <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="single-blog.html">single-blog</a></li>
+                                                <li><a href="impact.html">Инновации ( IT )</a></li>
+                                                <li><a href="{%url 'Courses:courses'%}">Метапознание</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
+
+                                        <li><a href="#">Франшизы <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="{% url 'contact'%}">Негеш</a></li>
+                                                <li><a href="{% url 'contact'%}">Раян 8Т</a></li>
+                                            </ul>
+                                        </li>
+                                        <!--<li><a href="#">pages <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="causes-details.html">causes-details</a></li>
                                                 <li><a href="elements.html">elements</a></li>
@@ -73,7 +78,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="donate_now">
-                                <a href="{% url 'Discussion_Forum:posts' %}" class="boxed-btn">Перейти на наш форум</a>
+                              <a href="{% url 'Discussion_Forum:posts'%}" class="boxed-btn">Перейти на наш форум</a>
                             </div>
                         </div>
                         <div class="col-12">
@@ -93,9 +98,9 @@
                 <div class="col-xl-12">
                     <div class="single_slider">
                         <div class="slider_text">
-                            <h3>8T<br>
+                            <h3>8T-Corporation<br>
                                 </h3>
-                            <p>Добро пожаловать в мир Метапознания <br>
+                            <p>Добро пожаловать в мир развития <br>
                                 </p>
                             <a href="#" class="boxed-btn2"></a>
                         </div>
@@ -107,7 +112,7 @@
     <!-- slider_area_end -->
 
     <!-- causes_area_start -->
-    <div class="causes_area">
+    <div class="causes_area" style="margin-top: 0px;">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
@@ -128,7 +133,7 @@
                 </div>
                 <div class="col-xl-6 col-md-6">
                     <div class="causes_thumb">
-                        <img class="img-fluid" src="{% static 'main/' %}img/causes/1.jpg" alt="">
+                        <img class="img-fluid" src="{% static 'main/'%}img/causes/25107089.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -142,7 +147,7 @@
             <div class="row align-items-center">
                 <div class="col-xl-6 col-md-6">
                     <div class="about_thumb">
-                        <img src="{% static 'main/img/about/prim.png' %}" alt="">
+                        <img src="{% static 'main/' %}img/causes/itphoto.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-xl-6 col-md-6">
@@ -251,6 +256,46 @@
                         </h3>
                     </div>
                 </div>
+            </div>
+            <div class="row" style="justify-content: center; margin-bottom: 50px;">
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="single_volunteer">
+                        <div class="thumb">
+                            <img src="{% static 'main/' %}img/volunteers/2.png" alt="">
+                            <div class="social_links">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="author_name text-center">
+                            <h3>Anila Miller</h3>
+                            <span>Volunteer &amp; Donner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="single_volunteer">
+                        <div class="thumb">
+                            <img src="{% static 'main/' %}img/volunteers/3.png" alt="">
+                            <div class="social_links">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="author_name text-center">
+                            <h3>Rona Dana</h3>
+                            <span>Volunteer</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="row">
                 <div class="col-xl-3 col-md-6">

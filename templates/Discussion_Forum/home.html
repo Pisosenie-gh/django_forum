@@ -123,9 +123,9 @@
 
                             <div class="blog_details">
                                 <a class="d-inline-block" href="c/question/{{ i.slug }}">
-                                    <h2>{{ i.description }}</h2>
-                                </a>
-                                <p>{{ i.opisanie }}</p>
+                                  <h2  >{{ i.description|truncatechars:'40' }}</h2>
+                              </a>
+                              <p>{{ i.opisanie|truncatechars:'30' }}</p>
                                 <ul class="blog-info-link" style="float: right;">
                                     <li><a href="#"><i class="fa fa-user"></i> {{ i.name }}, {{ i.topic }}</a></li>
                                     <li><a href="#"><i class="fa fa-comments"></i> {{ i.reviews_set.count }} Комментариев</a></li>
@@ -181,9 +181,9 @@
                                 <img src="{{ i.vopros.user_photo }}" style="    width: 20%;" >
                                 <div class="media-body">
                                     <a href="single-blog.html">
-                                        <h3>{{ i.vopros.description }}</h3>
-                                    </a>
-                                    <p>{{ i.vopros.date_created }}</p>
+                                      <h2  >{{ i.description|truncatechars:'40' }}</h2>
+                                  </a>
+                                  <p>{{ i.opisanie|truncatechars:'30' }}</p>
                                 </div>
                             </div>
                                 <hr>

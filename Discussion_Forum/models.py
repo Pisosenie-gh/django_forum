@@ -40,7 +40,6 @@ class forum(models.Model):
     user_photo = models.CharField("Photo", blank=True, max_length=50000)
 
 
-
     @property
     def num_likes(self):
         return str(self.likes.all().count())

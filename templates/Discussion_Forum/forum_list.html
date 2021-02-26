@@ -106,7 +106,6 @@
     </div>
     <!-- breadcam_area_end -->
 
-    <!--================Blog Area =================-->
 
     <section class="blog_area section-padding">
         <div class="container">
@@ -125,20 +124,26 @@
 
                             <div class="blog_details">
                                 <a class="d-inline-block" href="c/question/{{ i.id }}">
-                                    <h2>{{ i.description }}</h2>
+                                    <h2  >{{ i.description|truncatechars:'40' }}</h2>
                                 </a>
-                                <p>{{ i.opisanie }}</p>
+                                <p>{{ i.opisanie|truncatechars:'30' }}</p>
                                 <ul class="blog-info-link" style="float: right;">
                                     <li><a href="#"><i class="fa fa-user"></i> {{ i.name }}, {{ i.topic }}</a></li>
                                     <li><a href="#"><i class="fa fa-comments"></i> {{ i.reviews_set.count }} Комментариев</a></li>
                                     <li><a href="#"><i class="fa fa-eye"></i> {% get_hit_count for i  %} Просмотров</a></li>
                                 </ul>
                             </div>
+
                         </article>
                         {% endfor %}
+                        <!--================Blog Area =================-->
 
 
 
+
+                    </div>
+                    <div class="grid-img-right mt-4 text-right bg bg1" >
+                        {% include 'include/pagination.html' %}
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -176,7 +181,7 @@
                         </aside>
 
                       <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Популярные статьи</h3>
+                            <h3 class="widget_title">Популярные вопросы</h3>
                             {% for i in view.get_popular %}
                             <div class="media post_item">
                                 <img src="{{ i.vopros.user_photo }}" style="width: 20%;">

@@ -21,6 +21,8 @@ body {
     font-family: sans-serif;
 }
 
+/*--/footer--*/
+
 hr {
     border: none;
     border-top: 1px solid #DEDEDE;
@@ -1332,7 +1334,7 @@ h5:hover {
 .info-part-two320 p:last-child{
       text-decoration: none;
     border-bottom: none;
-   
+
 }
 */
 
@@ -1739,7 +1741,7 @@ h5:hover {
 /*
 .l-rightside39 .thumbs-up2:hover{
  background-color: #338338;
-    
+
 }
 .l-rightside39 .thumbs-down2:hover{
    background-color: #990707;
@@ -2130,15 +2132,15 @@ h5:hover {
 /*============comment289-box===========*/
 
 .replay-input-name42389 {
-    
+
 }
 
 .replay-email-input89298 {
- 
+
 }
 
 .replay-input-websit128923 {
-    
+
 }
 
 .input238-design {
@@ -2351,7 +2353,7 @@ h5:hover {
     display: inline-block;
 }
 .ul_list_ul_list-icon-ok281 ul {
-       
+
        width: 100%;
 }
 .ul_list_ul_list-icon-ok281 ul li {
@@ -2365,7 +2367,7 @@ h5:hover {
     text-decoration: none;
     color: #222629;
     font-family: fonawesome;
-    
+
 }
 
 
@@ -2381,7 +2383,7 @@ h5:hover {
     height: 50px;
     width: 50px;
     border-radius: 50%;
-  
+
 }
 
 .user-description3903 p {
@@ -2582,6 +2584,5 @@ body {
 
 .mission_img{
     width: 700px;
-    border-radius: 20px;    
+    border-radius: 20px;
 }
-

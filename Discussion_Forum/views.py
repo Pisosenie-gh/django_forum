@@ -106,7 +106,7 @@ class AddPost(View):
 
     def get(self,request):
         if request.user.is_authenticated:
-            form = CreateInForum()
+            form = CreateInForum(request.POST)
             if request.method == 'POST':
                 form = CreateInForum(request.POST)
                 category = Category.objects.all()
@@ -157,7 +157,7 @@ class GenreYear:
 class PostList(ListView, GenreYear, Popular):
     model = forum
     queryset = forum.objects.filter()
-
+    paginate_by = 5
 
 """Вывод вопросов деатльно + кол во просмотров"""
 
@@ -277,5 +277,3 @@ class CallView(View):
             form.movie = movie
             form.save()
             return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-

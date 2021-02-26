@@ -14,7 +14,7 @@
    <link rel="shortcut icon" type="image/x-icon" href="{% static 'main/' %}img/favicon.png">
    <!-- Place favicon.ico in the root directory -->
 <style>
-.button {
+.buttona {
   --color: #1e2235;
   --color-hover: #1e2235;
   --color-active: #fff;
@@ -46,7 +46,7 @@
   transition: color 0.2s linear;
 }
 
-.button.dark {
+.buttona.dark {
   --color: #f6f8ff;
   --color-hover: #f6f8ff;
   --color-active: #fff;
@@ -61,24 +61,24 @@
   --shadow: rgba(0, 17, 119, 0.16);
 }
 
-.button:hover {
+.buttona:hover {
   --icon: var(--icon-hover);
   --color: var(--color-hover);
   --background: var(--background-hover);
   --border-width: 2px;
 }
 
-.button:active {
+.buttona:active {
   --scale: 0.95;
 }
 
-.button:not(.liked):hover {
+.buttona:not(.liked):hover {
   --hand-rotate: 8;
   --hand-thumb-1: -12deg;
   --hand-thumb-2: 36deg;
 }
 
-.button.liked {
+.buttona.liked {
   --span-x: 2px;
   --span-d-o: 1;
   --span-d-x: 0;
@@ -88,7 +88,7 @@
   --background: var(--background-active);
 }
 
-.button:before {
+.buttona:before {
   content: "";
   min-width: 103px;
   position: absolute;
@@ -107,7 +107,7 @@
   box-shadow: inset 0 0 0 var(--border-width, 1px) var(--border), 0 4px 8px var(--shadow), 0 8px 20px var(--shadow);
 }
 
-.button .hand {
+.buttona .hand {
   width: 11px;
   height: 11px;
   border-radius: 2px 0 0 0;
@@ -124,8 +124,8 @@
   transform: rotate(calc(var(--hand-rotate, 0) * 1deg)) translateZ(0);
 }
 
-.button .hand:before,
-.button .hand:after {
+.buttona .hand:before,
+.buttona .hand:after {
   content: "";
   background: var(--icon);
   position: absolute;
@@ -133,7 +133,7 @@
   transition: background 0.2s linear, box-shadow 0.2s linear;
 }
 
-.button .hand:before {
+.buttona .hand:before {
   left: -5px;
   bottom: 0;
   height: 12px;
@@ -141,7 +141,7 @@
   border-radius: 1px 1px 0 1px;
 }
 
-.button .hand:after {
+.buttona .hand:after {
   right: -3px;
   top: 0;
   width: 4px;
@@ -155,7 +155,7 @@
   transform-origin: 0 0;
 }
 
-.button .hand .thumb {
+.buttona .hand .thumb {
   background: var(--icon);
   width: 10px;
   height: 4px;
@@ -173,7 +173,7 @@
   transform: scale(0.85) translateY(-0.5px) rotate(var(--hand-thumb-1, -45deg)) translateZ(0);
 }
 
-.button .hand .thumb:before {
+.buttona .hand .thumb:before {
   content: "";
   height: 4px;
   width: 7px;
@@ -192,14 +192,14 @@
   transform: rotate(var(--hand-thumb-2, -45deg)) translateZ(0);
 }
 
-.button .hand,
-.button span {
+.buttona .hand,
+.buttona span {
   display: inline-block;
   vertical-align: top;
 }
 
-.button .hand span,
-.button span span {
+.buttona .hand span,
+.buttona span span {
   opacity: var(--span-d-o, 0);
   -webkit-transition: opacity 0.2s linear, -webkit-transform 0.25s;
   transition: opacity 0.2s linear, -webkit-transform 0.25s;
@@ -209,7 +209,7 @@
   transform: translateX(var(--span-d-x, 4px)) translateZ(0);
 }
 
-.button>span {
+.buttona>span {
   -webkit-transition: -webkit-transform 0.25s;
   transition: -webkit-transform 0.25s;
   transition: transform 0.25s;
@@ -303,7 +303,7 @@
         </div>
     </header>
    <!-- header-end -->
-    
+
    <!-- breadcam_area_start -->
    <div class="breadcam_area bradcam_bg">
       <div class="container">
@@ -336,6 +336,7 @@
                         <li><a href="#"><i class="fa fa-comments"></i> {{ object.reviews_set.count }} Комментариев</a></li>
                         <li><a href="#"><i class="fa fa-eye"></i> {% get_hit_count for object %} Просмотров</a></li>
                      </ul>
+
                      <p class="excert">
 {{ object.opisanie }}
                      </p>
@@ -349,7 +350,7 @@
 {% csrf_token %}
 
                                         <input type="hidden" name="post_id" value="{{ object.id }}">
-                  <button class="button dark">
+                  <button class="buttona dark">
   <div class="hand">
     <div class="thumb"></div>
   </div>
@@ -435,12 +436,12 @@
                         </div> -->
                      </div>
                      <div class="form-group">
-                        <button type="submit" class="button button-contactForm btn_1 boxed-btn">Отправить</button>
+                        <button type="submit"   class="button button-contactForm btn_1 boxed-btn" > Отправить</button>
                      </div>
                   </form>
                </div>
     {% else %}
-                      <h4>Войдите или зарегестрируйтесь что бы оставить коментарий</h4>
+                      <h4>Войдите или зарегистрируйтесь, что бы оставить коментарий</h4>
 
 
               {% endif %}
@@ -466,7 +467,7 @@
                         </aside>
 
                         <aside class="single_sidebar_widget popular_post_widget">
-                            <h3 class="widget_title">Популярные статьи</h3>
+                            <h3 class="widget_title">Популярные вопросы</h3>
                             {% for i in view.get_popular %}
                             <div class="media post_item">
                                 <img src="{{ i.vopros.user_photo }}" style="width: 20%;">
@@ -547,7 +548,7 @@
                <div class="col-xl-12">
                   <p class="copy_right text-center">
                      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                   </p>
                </div>

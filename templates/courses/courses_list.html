@@ -52,8 +52,13 @@
                                     <ul id="navigation">
                                         <li><a href="{% url 'index' %}">Главная</a></li>
                                         <li><a href="{% url 'mission' %}">Наша миссия</a></li>
-                                        <li><a class="active" href="{% url 'Courses:courses' %}">Курсы</a></li>
-                                        <li><a href="{% url 'franchise' %}">Франшиза</a></li>
+                                        <li><a href="#">Наши направления <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="impact.html">Инновации ( IT )</a></li>
+                                                <li><a href="{%url 'Courses:courses'%}">Метапознание</a></li>
+                                            </ul>
+                                        </li>
+
 
 
                                         <!-- <li><a href="#">blog <i class="ti-angle-down"></i></a>

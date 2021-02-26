@@ -5,11 +5,11 @@ from django import forms
 """Форма Вопросов"""
 
 
-class CreateInForum(ModelForm):
+class CreateInForum(forms.ModelForm):
 
     class Meta:
         model = forum
-        fields = ('name','email', 'topic', 'description',  'opisanie','user_photo', 'username')
+        fields = ('name','email','topic', 'description',  'opisanie','user_photo', 'username')
 
 
 class ReviewForm(forms.ModelForm):

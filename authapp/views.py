@@ -15,7 +15,7 @@ from  django.http import HttpResponseRedirect, HttpResponse
 
 
 def signin(request):
-
+    
     forms = LoginForm()
     if request.method == 'POST':
         forms = LoginForm(request.POST)
@@ -46,7 +46,7 @@ def signin(request):
     context = {
         'form': forms,
 
-    
+
     }
     return render(request, 'signin.html', context)
 
@@ -130,5 +130,3 @@ def edit(request):
                       {'user_form': user_form,
                        'profile_form': profile_form,
                        "profile":profile})
-
-

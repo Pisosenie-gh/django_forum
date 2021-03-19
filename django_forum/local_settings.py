@@ -9,15 +9,15 @@ SECRET_KEY = 'y&@7_6xr$xkj+wfrwwx=dz$p4g^8-+p5t#@flyjlwer&+vx2i)'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['8t-corporation.com', '185.5.206.68']
 
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'forum',
-        'USER': 'danil',
-        'PASSWORD': '22072003',
+        'USER': 'user_db',
+        'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '',
 
@@ -26,6 +26,7 @@ DATABASES = {
 
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+
+
+STATIC_ROOT = os.path.join(BASE_DIR , 'static')
+
